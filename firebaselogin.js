@@ -1,22 +1,22 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-} from "https://www.gstatic.com/firebasejs/11.3.0/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDzYnlklqYjoh-n1q-bshcW4O6EE1g8fyA",
-  authDomain: "logindatabase-e9253.firebaseapp.com",
-  projectId: "logindatabase-e9253",
-  storageBucket: "logindatabase-e9253.firebasestorage.app",
-  messagingSenderId: "93347268514",
-  appId: "1:93347268514:web:85e515e5412eee433794fb",
+  apiKey: "AIzaSyAL5hvLC9E-txqASe28IOzVcIvq4ZqVYgo",
+  authDomain: "hazirhu-auth.firebaseapp.com",
+  projectId: "hazirhu-auth",
+  storageBucket: "hazirhu-auth.firebasestorage.app",
+  messagingSenderId: "818855360499",
+  appId: "1:818855360499:web:2b0495e651a8d5acb3c486"
 };
 
 // Initialize Firebase
@@ -34,14 +34,18 @@ signIn.addEventListener("click", (event) => {
       alert("Login is successfull");
       const user = userCredential.user;
       localStorage.setItem("loggedInUserId", user.uid);
-      window.location.href = "https://agriforiahomepage.vercel.app/";
+      window.location.href = "https://haazirhu-seva-hub-23.lovable.app/";
     })
     .catch((error) => {
       const errorCode = error.code;
-      if (errorCode === "auth/invalid-credential") {
-        alert("Incorrect Email or Password");
+      if (errorCode === "auth/user-not-found") {
+        alert("User does not exist.");
+      } else if (errorCode === "auth/wrong-password") {
+        alert("Incorrect password.");
+      } else if (errorCode === "auth/invalid-email") {
+        alert("Invalid email format.");
       } else {
-        alert("Account does not exists...");
+        alert("Login failed: " + errorCode);
       }
     });
 });
