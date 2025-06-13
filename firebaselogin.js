@@ -34,7 +34,7 @@ signIn.addEventListener("click", (event) => {
       alert("Login is successfull");
       const user = userCredential.user;
       localStorage.setItem("loggedInUserId", user.uid);
-      window.location.href = "https://haazirhu-seva-hub-23.lovable.app/";
+      window.location.href = "https://haazirhu-seva-hub.vercel.app/";
     })
     .catch((error) => {
       const errorCode = error.code;
